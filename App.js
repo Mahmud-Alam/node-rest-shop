@@ -13,7 +13,7 @@ mongoose.connect(
     process.env.MONGO_ATLAS_PW +
     "@node-rest-shop.q8a5bg9.mongodb.net/?retryWrites=true&w=majority",
   {
-    useMongoClient: true
+    useMongoClient: true,
   }
 );
 
