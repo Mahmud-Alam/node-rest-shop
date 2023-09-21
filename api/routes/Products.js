@@ -35,16 +35,18 @@ router.post("/", (req, res, next) => {
 
 router.get("/:productID", (req, res, next) => {
   const id = req.params.productID;
-  if (id === "prod-001") {
-    res.status(200).json({
-      message: "This is the product ID no 001",
-      id: id,
+  ProductModel.findById(id)
+  .exec()
+  .then(doc => {
+    console.log("From Database",doc);
+    res.status(200).json(doc);
+  })
+  .catch(err =>{
+    console.log(err);
+    res.status(500).json({
+      error: err
     });
-  } else {
-    res.status(200).json({
-      message: "You passed an ID",
-    });
-  }
+  });
 });
 
 router.patch("/:productID", (req, res, next) => {
