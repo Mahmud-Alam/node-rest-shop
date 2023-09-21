@@ -52,8 +52,8 @@ router.post("/", (req, res, next) => {
     });
 });
 
-router.get("/:productID", (req, res, next) => {
-  const id = req.params.productID;
+router.get("/:productId", (req, res, next) => {
+  const id = req.params.productId;
   ProductModel.findById(id)
   .exec()
   .then(doc => {
@@ -74,15 +74,26 @@ router.get("/:productID", (req, res, next) => {
   });
 });
 
-router.patch("/:productID", (req, res, next) => {
+router.patch("/:productId", (req, res, next) => {
   res.status(200).json({
     message: "Updated product!",
   });
 });
 
-router.delete("/:productID", (req, res, next) => {
-  res.status(200).json({
-    message: "Deleted product!",
+router.delete("/:productId", (req, res, next) => {
+  const id = req.params.productId;
+
+  // ProductModel.remove().exec().then().catch();
+  ProductModel.remove({_id: id})
+  .exec()
+  .then(result => {
+    res.status(200).json(result)
+  })
+  .catch(err =>{
+    console.log(err);
+    res.status(500).json({
+      error: err
+    });
   });
 });
 
