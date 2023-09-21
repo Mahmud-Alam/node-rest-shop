@@ -84,7 +84,7 @@ router.delete("/:productId", (req, res, next) => {
   const id = req.params.productId;
 
   // ProductModel.remove().exec().then().catch();
-  ProductModel.remove({_id: id})
+  ProductModel.findByIdAndDelete(id)                  //.remove() not working
   .exec()
   .then(result => {
     res.status(200).json(result)
