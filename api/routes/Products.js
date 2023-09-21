@@ -5,8 +5,23 @@ const mongoose = require("mongoose");
 const ProductModel = require("../models/ProductModel");
 
 router.get("/", (req, res, next) => {
-  res.status(200).json({
-    message: "Handling GET requests to /products",
+   //.find() to fetch all data
+   //.find().where() to add more conditions to the query
+  //.find().limit() to only fetch conditional numbers
+  //.exec() to get true promise
+
+  // ProductModel.find().exec().then().catch();
+  ProductModel.find()
+  .exec()
+  .then(docs => {
+    console.log('From Database', docs);
+    res.status(200).json(docs);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json({
+      error: err
+    });
   });
 });
 
