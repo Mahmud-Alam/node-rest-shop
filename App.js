@@ -11,10 +11,8 @@ const orderRoutes = require("./api/routes/Orders");
 mongoose.connect(
   "mongodb+srv://mahmud:" +
     process.env.MONGO_ATLAS_PW +
-    "@node-rest-shop.q8a5bg9.mongodb.net/?retryWrites=true&w=majority",
-  {
-    useMongoClient: true,
-  }
+    "@node-rest-shop.q8a5bg9.mongodb.net/?retryWrites=true&w=majority&appName=AtlasApp",
+  // {useMongoClient: true,}            //this piece of code gives error
 );
 
 app.use(morgan("dev"));
